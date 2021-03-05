@@ -1,0 +1,14 @@
+<h3>管理員登入</h3>
+<%= form_tag  admin_create_session_path, method: "post" do%>
+    Email:  <%= text_field_tag :email %><br />
+    密碼:  <%= password_field_tag :password %><br />
+    <%= submit_tag "登入" %>
+<% end %>
+
+<!--如果存在,就找尋name  雖然這樣很醜,但以後有更好ㄉ辦法再改-->
+<% if current_user%>
+  <%= current_user.name %>
+<% end %>
+  
+<!--上面可以用下面代替-->
+<!-- current_user.try(:name) -->

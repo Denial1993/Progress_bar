@@ -1,0 +1,48 @@
+<h3>編輯產品</h3>
+<%= form_for @product , method: "patch" do |f| %>
+    名稱:     <%= f.text_field :name %><br />
+    敘述:     <%= f.text_field :description %><br />
+    圖片:     <br/>
+<!--             這邊我們要給image一個id , 阿為了方便所以我們稱他為 "target"  ，之後要改也可以。 -->
+  <%= image_tag (@product.image_url || "https://via.placeholder.com/480x300?text=480x300") ,size: "480x300" , id: "target" , original_url: @product.image_url %>
+              <%= f.file_field :image , accept: "image/jpg , image/pgn , image/jpeg , image/gif" %><br />
+    價格:     <%= f.number_field :price %><br />
+<!--副類別是在學[加入select option 去選取商品類別] 的時候 本來從view 新增 移動過來的,然後哩~如果這時候按"更新",副類別也不會改變。 原因是因為還要去controller 那邊的 params 裡面加上:subcategory_id 參數可以通過的許可!! -->
+    副類別<%= f.select("subcategory_id", Subcategory.all.collect {|s| [ s.name_with_category, s.id ] }, { include_blank: true })%><br />  
+    <%= f.submit "更新" %>
+<% end %>
+
+
+<script>
+//  這個就是document on ready。 也就是說當on ready之後才會執行。
+  $(function(){
+    //"product_image" 這是input 的id。
+    $("#product_image").change(function(){
+      //所以這邊readURL 的第二個參數我就可以放 上面image_tag那邊設好的"target"
+      //這邊的this 代表上面的" f.file_field :image ,accept: "image/jpg , image/pgn , image/jpeg , image/gif" "
+      readURL(this,"target");
+    });
+    //然後下面input這名子去接上面的"this"      image_tag_id 去接上面的"target"
+    function readURL(input,image_tag_id){
+      //然後files是可以複選(只是我們這邊沒有這麼做) &&<= 代表"然後"  又是第0個  。
+      if(input.files && input.files[0]){
+        //FileReader 是javascript預設的名子 , 是固定的API
+        var reader = new FileReader();
+        //reader裡面有onload事件 所以我們必須先把onload事件給準備好。阿這也是 是javascript語法  所以你後面會得到一個e
+        reader.onload = function (e) {
+          //25行function.readURL-------- image_tag_id 必須要被放進來("#" + 放這裡 )
+          //阿如果你的是javascript是單純的話 你的e.target.result 就會是browser裡面的那串src裡面的東西
+          //阿讀取到e.target.result 以後就把它放到第一個參數 "src" 裡面
+          //阿放到誰的SRC呢?  你就必續往前抓到他 "("#" + image_tag_id )"
+          $("#" + image_tag_id ).attr("src" ,e.target.result);
+          //這裡才是真正讀取檔案,上面那邊onload  只是事先先準備起來的概念。
+          //readAsDataURL 也是預設固定的
+        }
+          reader.readAsDataURL(input.files[0]);
+      }else{
+          var original_url = $("#" + image_tag_id ).attr("original_url");
+          $("#" + image_tag_id ).attr("src" , original_url);
+      }
+    }   
+  });
+</script>

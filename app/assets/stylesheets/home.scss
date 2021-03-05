@@ -1,0 +1,30 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//孤輪用
+.fa-rotate-0 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg); 
+  font-size: 40px;
+}
+.fa-rotate-350 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(350deg);
+  transform: rotate(350deg); 
+  font-size: 40px;
+}
+.fa-rotate-335 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(335deg);
+  transform: rotate(335deg); 
+  font-size: 40px;
+}
+.fa-rotate-300 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(300deg);
+  transform: rotate(300deg); 
+  font-size: 40px;
+}
