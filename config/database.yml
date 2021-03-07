@@ -5,7 +5,8 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+#  ****如果要傳heroku 網站 那這邊就必須要改成 postgresql為預設***
+  adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
