@@ -58,6 +58,7 @@ end
 
 group :production do
   gem 'pg'
+    HEROKU_DEBUG_RAILS_RUNNER=1
 end
 
 group :test do
