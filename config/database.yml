@@ -8,11 +8,10 @@ default: &default
 #  ****如果要傳heroku 網站 那這邊就必須要改成 postgresql為預設***
   adapter: postgresql
 #  還要新增encoding
-  encoding: unicode
+#  encoding: unicode
 #  通常這邊username: 預設名稱都會是 postgres。
-  username: postgres
-  password: 111111
-  socket: /run/postgresql/.s.PGSQL.5432
+#  username: postgres
+#  password: 111111
 #  host: localhost
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
