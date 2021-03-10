@@ -7,11 +7,18 @@
 default: &default
 #  ****如果要傳heroku 網站 那這邊就必須要改成 postgresql為預設***
   adapter: postgresql
+#  還要新增encoding
+  encoding: unicode
+#  通常這邊username: 預設名稱都會是 postgres。
+  username: postgres
+  password: 111111
+#  host: localhost
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
+  adapter: sqlite3
   database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
@@ -19,6 +26,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  adapter: sqlite3
   database: db/test.sqlite3
 
 production:
