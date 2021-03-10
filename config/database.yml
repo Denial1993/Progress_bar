@@ -12,6 +12,7 @@ default: &default
 #  通常這邊username: 預設名稱都會是 postgres。
   username: postgres
   password: 111111
+  socket: /run/postgresql/.s.PGSQL.5432
 #  host: localhost
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
